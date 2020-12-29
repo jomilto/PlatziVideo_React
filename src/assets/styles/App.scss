@@ -1,5 +1,15 @@
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    background-color: red;
-    color: white;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    background-color:  #8F57FD;
+    font-family: 'Muli', sans-serif;
 }
