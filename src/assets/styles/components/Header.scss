@@ -1,0 +1,59 @@
+.header {
+    width: 100%;
+    height: 10vh;
+    background-color: #8F57FD;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__img {
+    width: 20rem;
+    margin-left: 1rem;
+}
+
+.header__menu {
+    margin-right: 1rem;
+}
+
+.header__menu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    width: 10rem;
+    text-align: right;
+    margin-left: -14px;
+}
+
+.header__menu:hover ul,
+ul:hover {
+    display: block;
+}
+
+.header__menu li {
+    margin: .8rem 0;
+}
+
+.header__menu li a {
+    color: white;
+    text-decoration: none;
+}
+
+.header__menu li a:hover {
+    color:black;
+}
+
+ .header__menu--profile {
+    margin-right: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.header__menu--profile img {
+    margin-right: 8px;
+    width: 4rem;
+}
+
+.header__menu--profile p {
+    color: white;
+}
