@@ -17,8 +17,7 @@ const Home = () => {
     const initialState = useInitialState(API);
 
     return initialState.length === 0 ? <h1>Loading...</h1> : (
-        <div className="App">
-            <Header />
+        <>
             <Search />
             {initialState.mylist.length > 0 &&
                 <Categories title="Mi lista">
@@ -49,8 +48,7 @@ const Home = () => {
                     </Carousel>
                 </Categories>
             }
-            <Footer />
-        </div>
+        </>
     );
 }
 
