@@ -13,7 +13,7 @@ const reducer = (state, action) => {
         case 'LOGIN_REQUEST':
             return {
                 ...state,
-                user: state.payload
+                user: action.payload
             }
         default:
             return state;
