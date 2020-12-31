@@ -9,7 +9,7 @@ import plusIcon from '../assets/static/plus-icon.png';
 import removeIcon from '../assets/static/remove-icon.png';
 
 const CarouselItem = (props) => {
-    const { id, cover, title, year, contentRating, duration } = props;
+    const { id, cover, title, year, contentRating, duration, isMyList } = props;
 
     const handleSetFavorite = () => {
         props.setFavorite({
@@ -27,8 +27,13 @@ const CarouselItem = (props) => {
             <div className="carrousel-item__details">
                 <div className="carrousel-item__details--content">
                     <img src={playIcon} alt="Play" />
-                    <img src={plusIcon} alt="Add to Favorites" onClick={handleSetFavorite}/>
-                    <img src={removeIcon} alt="Delete from Favorites" onClick={() => handleDeleteFavorite(id)}/>
+                    
+                    {isMyList ?
+                        <img src={removeIcon} alt="Delete from Favorites" onClick={() => handleDeleteFavorite(id)}/>
+                    :
+                        <img src={plusIcon} alt="Add to Favorites" onClick={handleSetFavorite}/>
+                    }
+                    
                     <p className="carrousel_item__details--title">{title}</p>
                     <p className="carrousel-item__details--subtitle">
                         {`${year} ${contentRating} ${duration} minutes`}
