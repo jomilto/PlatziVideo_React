@@ -29,7 +29,7 @@ const Login = (props) => {
     return (
         <section className="login">
             <div className="login__container">
-                <h2 tabindex="0">Inicia Sesión</h2>
+                <h2 tabIndex="0">Inicia Sesión</h2>
                 <form onSubmit={handleSubmit} className="login__container--form">
                     <input 
                         aria-label="Correo" 
@@ -51,7 +51,7 @@ const Login = (props) => {
                     />
                     <button className="button">Iniciar Sesión</button>
                     <div className="login__container--remember-me">
-                        <label for="remember">
+                        <label htmlFor="remember">
                             <input type="checkbox" name="remember" id="remember" value="remember" />
                             <span>Recuérdame</span>
                         </label>
