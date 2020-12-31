@@ -23,6 +23,16 @@
     font-size: 2rem;
 }
 
+.error a {
+    text-decoration: none;
+    color: white;
+}
+
+.error a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
 .animated {
     animation-duration: 2.5s;
     animation-fill-mode: both;
