@@ -30,7 +30,8 @@ if(ENV === 'development'){
     app.use(webpackHotMiddleware(compiler));
 }else{
     app.use(express.static(`${__dirname}/public`));
-    app.use(helmet());
+    // app.use(helmet());
+    app.use(helmet({contentSecurityPolicy: false,}));
     // Para evitar la incrustación de alto consumo de ancho de banda
     app.use(helmet.permittedCrossDomainPolicies());
     // para evitar ataques directos a ciertos frameworks o lenjuages
@@ -75,5 +76,5 @@ app.listen(PORT, (err) => {
     if(err){
         console.error(err);
     }
-    console.log('Listen on http://localhost:3000');
+    console.log(`Listen on http://localhost:${PORT}`);
 });
