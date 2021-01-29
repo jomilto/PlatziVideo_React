@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from "dotenv";
 import webpack from "webpack";
+import helmet from "helmet";
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -27,6 +28,13 @@ if(ENV === 'development'){
 
     app.use(webpackDevMiddleware(compiler, serverConfig));
     app.use(webpackHotMiddleware(compiler));
+}else{
+    app.use(express.static(`${__dirname}/public`));
+    app.use(helmet());
+    // Para evitar la incrustación de alto consumo de ancho de banda
+    app.use(helmet.permittedCrossDomainPolicies());
+    // para evitar ataques directos a ciertos frameworks o lenjuages
+    app.disable('x-powered-by');
 }
 
 const setResponse = (html, preloadedState) => {
