@@ -1,77 +1,78 @@
 import React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import classNames from "classnames";
-import { logoutRequest } from "../actions";
+import classNames from 'classnames';
+import { logoutRequest } from '../actions';
 
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo.png';
 // import userIcon from '../assets/static/user.png';
-import gravatar from "../utils/gravatar";
+import gravatar from '../utils/gravatar';
 
 const Header = (props) => {
-    const { user, isLogin, isRegister } = props;
-    const hasUser = Object.keys(user).length > 0;
+  const { user, isLogin, isRegister } = props;
+  const hasUser = Object.keys(user).length > 0;
 
+  const handleLogout = () => {
+    props.logoutRequest({});
+  };
 
-    const handleLogout = () => {
-        props.logoutRequest({});
-    };
+  const headerClass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
 
-    const headerClass = classNames('header',{
-        isLogin,
-        isRegister,
-    });
+  return (
+    <header className={headerClass}>
 
-    return (
-        <header className={headerClass}>
-            
-            <Link to="/">
-                <img className="header__img" src={logo} alt="logo_platzi_video" />
+      <Link to='/'>
+        <img className='header__img' src={logo} alt='logo_platzi_video' />
+      </Link>
+
+      <div className='header__menu'>
+        <div className='header__menu--profile'>
+          {hasUser ? (
+            <>
+              <img
+                src={gravatar(user.email)}
+                alt='User'
+              />
+              <p>Perfil</p>
+            </>
+          ) : (
+            <Link to='/login'>
+              Iniciar Sesión
             </Link>
-            
-                <div className="header__menu">
-                    <div className="header__menu--profile">
-                        {hasUser ?
-                            <>
-                            <img 
-                                src={ gravatar(user.email) } 
-                                alt="User" 
-                            />
-                            <p>Perfil</p>
-                            </>
-                            :
-                            <Link to="/login">
-                                Iniciar Sesión
-                            </Link>
-                        }
-                    </div>
-                    {hasUser &&
-                        <ul>
-                            <li>
-                                <a href="#">{user.email}</a>
-                            </li>
-                            <li>
-                                <a 
-                                    href="#logout" 
-                                    onClick={handleLogout}
-                                >Cerrar Sesión</a>
-                            </li>  
-                    </ul>
-                    }
-                </div>
-        </header>
-    )
+          )}
+        </div>
+        {hasUser && (
+          <ul>
+            <li>
+              <a href='/'>{user.email}</a>
+            </li>
+            <li>
+              <a
+                href='/'
+                onClick={handleLogout}
+              >
+                Cerrar Sesión
+              </a>
+            </li>
+          </ul>
+        )}
+      </div>
+    </header>
+  );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    };
+  return {
+    user: state.user,
+  };
 };
 
 const mapDispatchToProps = {
-    logoutRequest,
-}
+  logoutRequest,
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
